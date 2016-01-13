@@ -12,3 +12,9 @@ c:\my documents\visual studio 2013\Projects\PairsGame\PairsGame\obj\Debug\Ui\Win
 c:\my documents\visual studio 2013\Projects\PairsGame\PairsGame\obj\Debug\App.g.cs
 C:\My documents\Visual Studio 2013\Projects\PairsGame\PairsGame\obj\Debug\PairsGame.csprojResolveAssemblyReference.cache
 C:\My documents\Visual Studio 2013\Projects\PairsGame\PairsGame\obj\Debug\App.baml
+C:\My documents\Visual Studio 2013\Projects\PairsGame\PairsGame\bin\Debug\MahApps.Metro.dll
+C:\My documents\Visual Studio 2013\Projects\PairsGame\PairsGame\bin\Debug\System.Windows.Interactivity.dll
+C:\My documents\Visual Studio 2013\Projects\PairsGame\PairsGame\bin\Debug\MahApps.Metro.pdb
+C:\My documents\Visual Studio 2013\Projects\PairsGame\PairsGame\bin\Debug\MahApps.Metro.xml
+C:\My documents\Visual Studio 2013\Projects\PairsGame\PairsGame\obj\Debug\Ui\Windows\GameConfigWindow.baml
+C:\My documents\Visual Studio 2013\Projects\PairsGame\PairsGame\obj\Debug\Ui\Windows\GameConfigWindow.g.cs

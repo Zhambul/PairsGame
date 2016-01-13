@@ -18,16 +18,6 @@ namespace PairsGame.Bl
 {
     public class GameElement : INotifyPropertyChanged, IGameElement
     {
-        private ButtonBackground _backBackground;
-        public ButtonBackground BackBackground
-        {
-            get { return _backBackground; }
-            set
-            {
-                _backBackground = value;
-                OnPropertyChanged();
-            }
-        }
 
         private ButtonBackground _frontBackground;
         public ButtonBackground FrontImage
@@ -39,54 +29,28 @@ namespace PairsGame.Bl
                 OnPropertyChanged();
             }
         }
-
+        public int Row { get; set; }
+        public int Col { get; set; }
+        public bool Empty { get; set; }
+        public bool Disabled { get; set; }
+        public bool Checked { get; set; }
+        public void SetSelected()
+        {
+            GameButton.BorderThickness = new Thickness(3);
+        }
         public Button GameButton { get; set; }
-
-        private bool _isUpFront;
-        public GameElement()
-        {
-            InitBackImage();
-
-            GameButton = new Button()
-            {
-                Background = BackBackground.Image
-            };
-        }
-
-        private void InitBackImage()
-        {
-            _backBackground = new ButtonBackground(
-                Util.Convert(Resources.white),-1    
-            );
-        }
-
-        public void Flip()
-        {
-            GameButton.Background = _isUpFront ? BackBackground.Image : FrontImage.Image;
-            _isUpFront = !_isUpFront;
-        }
-
-        public void FlipFrontDown()
-        {
-            GameButton.Background = BackBackground.Image;
-            _isUpFront = false;
-        }
-     
 
         public void DisableElement()
         {
-            GameButton.Background = Brushes.Black;
-        }
-
-        public int index { get { return 0; } set{} }
-
-        public string Name { get { return "asdqwe"; }
-            set { }
+            Empty = true;
+            Checked = true;
+            Disabled = true;
+            GameButton.Background = Brushes.White;
         }
 
         public void Update()
         {
-            FlipFrontDown();
+            GameButton.BorderThickness = new Thickness(1);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

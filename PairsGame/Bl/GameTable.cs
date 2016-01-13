@@ -26,8 +26,7 @@ namespace PairsGame.Bl
 
         private IGameElement _currentElement;
         public IGameElementFabric GameElementFabric { get; set; }
-        public IImageFabric ImageFabric { get; set; }
-
+        
         private readonly int DISABLED_BUTTON_TAG = -1;
         private IGameElement CurrentElement
         {
@@ -68,7 +67,6 @@ namespace PairsGame.Bl
             }
         }
 
-
         private void SetIdToGameElement(IGameElement element)
         {
             element.GameButton.Tag = _idSetter;
@@ -106,7 +104,7 @@ namespace PairsGame.Bl
 
             if (CurrentElement != null)
             {
-                CurrentElement.Flip();
+                CurrentElement.SetSelected();
 
                 if (IsPairMatches())
                 {
@@ -148,17 +146,16 @@ namespace PairsGame.Bl
 
         private void DisablePair()
         {
+
+            NotifyGameElements();
+
             RemoveGameElement(CurrentElement);
             RemoveGameElement(PreviousElement);
 
-            NotifyGameElements();
         }
-
 
         public void RegisterGameElement(IGameElement gameElement, int i, int j)
         {
-            gameElement.FrontImage = ImageFabric.GetRandomImage();
-
             gameElement.GameButton.Click += GameButton_Click;
             SetIdToGameElement(gameElement);
 

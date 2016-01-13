@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-c:\my documents\visual studio 2013\Projects\PairsGame\PairsGame\obj\Debug\
+C:\My documents\Visual Studio 2013\Projects\PairsGame\PairsGame\obj\Debug\
 PairsGame
 none
 false
 DEBUG;TRACE
-c:\my documents\visual studio 2013\Projects\PairsGame\PairsGame\App.xaml
-11914055636
+C:\My documents\Visual Studio 2013\Projects\PairsGame\PairsGame\App.xaml
+21253262982
 
-16-511198222
-131478842535
-Ui\Windows\MainWindow.xaml;
+171265980048
+15848995029
+Ui\Windows\GameConfigWindow.xaml;Ui\Windows\MainWindow.xaml;
 
 False
 

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using MahApps.Metro.Controls;
 using PairsGame.Annotations;
 using PairsGame.Bl;
 
@@ -12,8 +13,9 @@ namespace PairsGame.Ui.Windows
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : MetroWindow, INotifyPropertyChanged
     {
+        private readonly int _size;
         private IGameTable _gameTable;
 
         private ObservableCollection<IGameElement> _gameElements;
@@ -27,10 +29,9 @@ namespace PairsGame.Ui.Windows
                 OnPropertyChanged();
             }
         }
-
-        private int SIZE = 4;
-        public MainWindow()
+        public MainWindow(int size)
         {
+            _size = size;
             DataContext = this;
             GameElements = new ObservableCollection<IGameElement>();
             InitializeComponent();
@@ -40,13 +41,12 @@ namespace PairsGame.Ui.Windows
 
         private void FillGridWithElements()
         {
-            _gameTable = new GameTable()
+            _gameTable = new GameTable
             {
-                ImageFabric = new ImageFabric(SIZE),
-                GameElementFabric = new GameElementFabric()
+                GameElementFabric = new GameElementFabric(new ImageFabric())
             };
 
-            _gameTable.FillWithElements(SIZE, MyGrid);
+            _gameTable.FillWithElements(_size, MyGrid);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
