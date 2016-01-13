@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
 using PairsGame.Annotations;
 using PairsGame.Bl;
 
@@ -28,7 +26,8 @@ namespace PairsGame.Ui.Windows
             }
         }
 
-        private int SIZE = 4;
+        private const int Size = 4;
+
         public MainWindow()
         {
             DataContext = this;
@@ -42,11 +41,10 @@ namespace PairsGame.Ui.Windows
         {
             _gameTable = new GameTable()
             {
-                ImageFabric = new ImageFabric(SIZE),
-                GameElementFabric = new GameElementFabric()
+                GameElementFabric = new GameElementFabric(new ImageFabric(Size))
             };
 
-            _gameTable.FillWithElements(SIZE, MyGrid);
+            _gameTable.FillWithElements(Size, MyGrid);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

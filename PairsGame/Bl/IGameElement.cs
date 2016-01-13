@@ -12,10 +12,14 @@ namespace PairsGame.Bl
     public interface IGameElement
     {
         void Update();
+        bool Empty { get; set; }
+        bool Checked { get; set; }
+        bool Disabled { get; set; }
+        int Row { get; set; }
+        int Col { get; set; }
         ButtonBackground FrontImage { get; set; }
         Button GameButton { get; set; }
-        void Flip();
-        void FlipFrontDown();
         void DisableElement();
+        void SetSelected();
     }
 }

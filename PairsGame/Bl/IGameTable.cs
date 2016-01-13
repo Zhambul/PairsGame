@@ -16,6 +16,6 @@ namespace PairsGame.Bl
         void RemoveGameElement(IGameElement gameElement);
         void NotifyGameElements();
         void MakeMove(Button button);
-        void FillWithElements(int size, UniformGrid MyGrid);
+        void FillWithElements(int size, UniformGrid myGrid);
     }
 }

@@ -71,6 +71,9 @@
     <Compile Include="Bl\GameTable.cs" />
     <Compile Include="Bl\IGameElement.cs" />
     <Compile Include="Bl\IGameTable.cs" />
+    <Compile Include="Bl\Route.cs" />
+    <Compile Include="Bl\RouteHelper.cs" />
+    <Compile Include="Bl\RouteHistory.cs" />
     <Compile Include="Bl\Util.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Ui\Windows\MainWindow.xaml.cs">

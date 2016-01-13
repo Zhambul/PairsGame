@@ -24,7 +24,7 @@ namespace PairsGame.Bl
         public ButtonBackground GetRandomImage()
         {
             Random random = new Random();
-            int generatedIndex =  random.Next(_allImages.Count - 1);
+            int generatedIndex = random.Next(_allImages.Count - 1);
             var color = _allImages[generatedIndex];
             _allImages.RemoveAt(generatedIndex);
 

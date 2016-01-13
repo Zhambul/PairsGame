@@ -26,9 +26,10 @@ namespace PairsGame.Bl
 
         private IGameElement _currentElement;
         public IGameElementFabric GameElementFabric { get; set; }
-        public IImageFabric ImageFabric { get; set; }
 
         private readonly int DISABLED_BUTTON_TAG = -1;
+
+        private GameElement[,] _gameElementsArray;
         private IGameElement CurrentElement
         {
             get { return _currentElement; }
@@ -51,23 +52,49 @@ namespace PairsGame.Bl
             GameElements = new ObservableCollection<IGameElement>();
         }
 
-        public void FillWithElements(int size, UniformGrid MyGrid)
+        public void FillWithElements(int size, UniformGrid myGrid)
         {
-
-            for (int i = 0; i < size; i++)
+            _gameElementsArray = new GameElement[size+2,size+2];
+            int count = 0;
+            int restcount = 0;
+            int allcount = 0;
+            for (int row = 0; row < _gameElementsArray.GetLength(0); row++)
             {
-                for (int j = 0; j < size; j++)
+                for (int col = 0; col < _gameElementsArray.GetLength(1); col++)
                 {
-                    IGameElement gameElement = GameElementFabric.GetGameElement();
+                    try
+                    {
+                        GameElement result;
 
-                    RegisterGameElement(gameElement , i , j);
+                        if (row > 0 && col > 0 && col < size + 1 && row < size + 1 )
+                        {
+                            var gameElement = GameElementFabric.GetGameElement();
 
-                    MyGrid.Children.Add(gameElement.GameButton);
-                    GameElements.Add(gameElement);
+                            RegisterGameElement(gameElement, row, col);
+                            myGrid.Children.Add(gameElement.GameButton);
+                            GameElements.Add(gameElement);
+                            result = (GameElement) gameElement;
+                            result.Empty = false;
+                            count ++;
+                        }
+                        else
+                        {
+                            result = new GameElement {Empty = true};
+                            restcount++;
+                        }
+                        allcount++;
+                        result.Row = row;
+                        result.Col = col;
+
+                        _gameElementsArray[row, col] = result;
+                    }
+                    catch (Exception e)
+                    {
+                        
+                    }
                 }
             }
         }
-
 
         private void SetIdToGameElement(IGameElement element)
         {
@@ -106,8 +133,20 @@ namespace PairsGame.Bl
 
             if (CurrentElement != null)
             {
-                CurrentElement.Flip();
+                CurrentElement.SetSelected();
 
+                if (PreviousElement != null)
+                {
+                    new RouteHelper().MakeRoute(_gameElementsArray, CurrentElement,PreviousElement);
+
+                    for (int row = 0; row < _gameElementsArray.GetLength(0); row++)
+                    {
+                        for (int col = 0; col < _gameElementsArray.GetLength(1); col++)
+                        {
+                            _gameElementsArray[row, col].Checked = false;
+                        }
+                    }
+                }
                 if (IsPairMatches())
                 {
                     DisablePair();
@@ -132,7 +171,8 @@ namespace PairsGame.Bl
         {
             if (PreviousElement != null)
             {
-                return (Equals(PreviousElement.FrontImage.Id, CurrentElement.FrontImage.Id));
+                return (Equals(PreviousElement.FrontImage.Id, CurrentElement.FrontImage.Id) &&
+                       !Equals(PreviousElement.GameButton.Tag, CurrentElement.GameButton.Tag));
             }
             return false;
         }
@@ -157,8 +197,6 @@ namespace PairsGame.Bl
 
         public void RegisterGameElement(IGameElement gameElement, int i, int j)
         {
-            gameElement.FrontImage = ImageFabric.GetRandomImage();
-
             gameElement.GameButton.Click += GameButton_Click;
             SetIdToGameElement(gameElement);
 
@@ -169,8 +207,9 @@ namespace PairsGame.Bl
         public void RemoveGameElement(IGameElement gameElement)
         {
             gameElement.DisableElement();
+            gameElement.Empty = true;
             gameElement.GameButton.Tag = DISABLED_BUTTON_TAG;
-            _gameElements.Remove(gameElement);
+//            _gameElements.Remove(gameElement);    
         }
 
         public void NotifyGameElements()

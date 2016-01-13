@@ -3,7 +3,7 @@ using System.Windows.Media.Imaging;
 
 namespace PairsGame.Bl
 {
-    interface IImageFabric
+    public interface IImageFabric
     {
         ButtonBackground GetRandomImage();
     }
