@@ -73,6 +73,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bl\ButtonBackground.cs" />
+    <Compile Include="Bl\GameElementsStack.cs" />
+    <Compile Include="Bl\GameElementStackFabric.cs" />
+    <Compile Include="Bl\IGameElementsStackFabric.cs" />
     <Compile Include="Bl\ImageFabric.cs" />
     <Compile Include="Bl\GameElement.cs" />
     <Compile Include="Bl\GameElementFabric.cs" />

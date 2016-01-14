@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,25 +11,18 @@ using PairsGame.Annotations;
 
 namespace PairsGame.Bl
 {
-    class GameTable : IGameTable, INotifyPropertyChanged
+    class GameTable : IGameTable
     {
         private bool _isOpeningNewElement;
 
-        private ObservableCollection<IGameElement> _gameElements;
-        public ObservableCollection<IGameElement> GameElements
-        {
-            get { return _gameElements; }
-            set
-            {
-                _gameElements = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private IGameElement _currentElement;
-        public IGameElementFabric GameElementFabric { get; set; }
+        public List<GameElementsStack> GameElementStacks; 
         
+        private IGameElement _currentElement;
+        private readonly IGameElementsStackFabric _gameElementsStackFabric;
+
         private readonly int DISABLED_BUTTON_TAG = -1;
+
+        private Grid _grid;
         private IGameElement CurrentElement
         {
             get { return _currentElement; }
@@ -45,25 +40,34 @@ namespace PairsGame.Bl
 
         private int _idSetter;
 
-        public GameTable()
+        public GameTable(IGameElementsStackFabric gameElementsStackFabric)
         {
-            GameElements = new ObservableCollection<IGameElement>();
+            _gameElementsStackFabric = gameElementsStackFabric;
+            GameElementStacks = new List<GameElementsStack>();
         }
 
-        public void FillWithElements(int size, UniformGrid MyGrid)
+        public void FillWithElements(int size, Grid myGrid)
         {
+            _grid = myGrid;
 
-            for (int i = 0; i < size; i++)
-            {
-                for (int j = 0; j < size; j++)
+            for (var i = 0; i < size; i++)
+            {   
+                _grid.RowDefinitions.Add(new RowDefinition());
+                _grid.ColumnDefinitions.Add(new ColumnDefinition());
+
+                for (var j = 0; j < size; j++)
                 {
-                    IGameElement gameElement = GameElementFabric.GetGameElement();
+                    
+                    var gameElementsStack = _gameElementsStackFabric.Get();
 
-                    RegisterGameElement(gameElement , i , j);
+                    var gameElement = gameElementsStack.Elements.Peek();
 
-                    MyGrid.Children.Add(gameElement.GameButton);
-                    GameElements.Add(gameElement);
+                    RegisterGameElement(gameElement, i, j);
+                    
+                    GameElementStacks.Add(gameElementsStack);
+
                 }
+
             }
         }
 
@@ -79,11 +83,14 @@ namespace PairsGame.Bl
             {
                 return null;
             }
-            foreach (var gameElement in _gameElements)
+            foreach (var gameElementStack in GameElementStacks)
             {
-                if ((int)gameElement.GameButton.Tag == id)
+                foreach (var gameElement in gameElementStack.Elements.ToList())
                 {
-                    return gameElement;
+                    if ((int?) gameElement.GameButton.Tag == id)
+                    {
+                        return gameElement;
+                    }
                 }
             }
             throw new Exception("Element is not found");
@@ -118,9 +125,10 @@ namespace PairsGame.Bl
             CheckWin();
         }
 
+
         private void CheckWin()
         {
-            if (GameElements.Count == 0)
+            if (GameElementStacks.Count == 0)
             {
                 MessageBox.Show("You have won");
             }
@@ -130,7 +138,8 @@ namespace PairsGame.Bl
         {
             if (PreviousElement != null)
             {
-                return (Equals(PreviousElement.FrontImage.Id, CurrentElement.FrontImage.Id));
+                return (Equals(PreviousElement.FrontImage.Id, CurrentElement.FrontImage.Id) &&
+                        !Equals(PreviousElement.GameButton.Tag, CurrentElement.GameButton.Tag));
             }
             return false;
         }
@@ -146,12 +155,10 @@ namespace PairsGame.Bl
 
         private void DisablePair()
         {
-
             NotifyGameElements();
 
             RemoveGameElement(CurrentElement);
             RemoveGameElement(PreviousElement);
-
         }
 
         public void RegisterGameElement(IGameElement gameElement, int i, int j)
@@ -161,30 +168,59 @@ namespace PairsGame.Bl
 
             gameElement.GameButton.SetValue(Grid.RowProperty, i);
             gameElement.GameButton.SetValue(Grid.ColumnProperty, j);
+
+            _grid.Children.Add(gameElement.GameButton);
         }
 
         public void RemoveGameElement(IGameElement gameElement)
         {
             gameElement.DisableElement();
             gameElement.GameButton.Tag = DISABLED_BUTTON_TAG;
-            _gameElements.Remove(gameElement);
+
+            GameElementsStack currentGameElementStack = null;
+
+            foreach (var gameElementsStack in GameElementStacks)
+            {
+                foreach (var gE in gameElementsStack.Elements.ToList())
+                {
+                    if (gE == gameElement)
+                    {
+                        currentGameElementStack = gameElementsStack;
+                    }
+                }
+            }
+            if (currentGameElementStack == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            if (currentGameElementStack.Elements.Count == 2)
+            {
+                currentGameElementStack.Elements.Pop();
+                var nextGameElement = currentGameElementStack.Elements.Peek();
+                
+                var row = (int) gameElement.GameButton.GetValue(Grid.RowProperty);
+                var column = (int) gameElement.GameButton.GetValue(Grid.ColumnProperty);
+
+
+                RegisterGameElement(nextGameElement, row, column);
+                _grid.Children.Remove(gameElement.GameButton);
+            }
+            else
+            {
+                GameElementStacks.Remove(currentGameElementStack);
+            }
         }
 
         public void NotifyGameElements()
         {
-            foreach (var gameElement in _gameElements)
+            foreach (var gameElementsStack in GameElementStacks)
             {
-                gameElement.Update();
+                foreach (var gameElement in gameElementsStack.Elements.ToList())
+                {
+                    gameElement.Update();
+                }
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

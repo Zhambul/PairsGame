@@ -11,11 +11,11 @@ namespace PairsGame.Bl
 {
     public interface IGameTable
     {
-        ObservableCollection<IGameElement> GameElements { get; set; }
+//        ObservableCollection<IGameElement> GameElements { get; set; }
         void RegisterGameElement(IGameElement gameElement, int i, int j);
         void RemoveGameElement(IGameElement gameElement);
         void NotifyGameElements();
         void MakeMove(Button button);
-        void FillWithElements(int size, UniformGrid MyGrid);
+        void FillWithElements(int size, Grid myGrid);
     }
 }

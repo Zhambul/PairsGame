@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PairsGame.Bl
 {
-    interface IGameElementFabric
+    class GameElementsStack
     {
-        IGameElement Get();
+        public Stack<IGameElement> Elements { get; set; } 
+
     }
 }

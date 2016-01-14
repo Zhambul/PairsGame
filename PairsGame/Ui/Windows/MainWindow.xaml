@@ -33,6 +33,6 @@
         </Style>
     </controls:MetroWindow.Resources>
     
-    <UniformGrid Name="MyGrid"/>
+    <Grid Name="MyGrid"/>
 
     </controls:MetroWindow>

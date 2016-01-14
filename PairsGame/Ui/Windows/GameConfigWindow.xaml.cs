@@ -24,12 +24,12 @@ namespace PairsGame.Ui.Windows
 
         public ObservableCollection<String> Sizes { get; set; }
 
-        private int _tableSize = 3;
+        private int _tableSize = 2;
         private int _mode = 0;
         public GameConfigWindow()
         {
             InitializeComponent();
-            Sizes = new ObservableCollection<String> { "4", "6", "8" };
+            Sizes = new ObservableCollection<String> {"2", "4", "6", "8" };
             DataContext = this;
         }
 

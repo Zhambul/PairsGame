@@ -33,10 +33,10 @@ namespace PairsGame.Bl
                 _allImages.Add(new ButtonBackground(Util.Convert(Resources._2), 1));
                 _allImages.Add(new ButtonBackground(Util.Convert(Resources._3), 2));
                 _allImages.Add(new ButtonBackground(Util.Convert(Resources._4), 3));
-                _allImages.Add(new ButtonBackground(Util.Convert(Resources._5), 4));
-                _allImages.Add(new ButtonBackground(Util.Convert(Resources._6), 5));
-                _allImages.Add(new ButtonBackground(Util.Convert(Resources._7), 6));
-                _allImages.Add(new ButtonBackground(Util.Convert(Resources._8), 7));
+//                _allImages.Add(new ButtonBackground(Util.Convert(Resources._5), 4));
+//                _allImages.Add(new ButtonBackground(Util.Convert(Resources._6), 5));
+//                _allImages.Add(new ButtonBackground(Util.Convert(Resources._7), 6));
+//                _allImages.Add(new ButtonBackground(Util.Convert(Resources._8), 7));
             }
         }
 

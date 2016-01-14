@@ -41,10 +41,7 @@ namespace PairsGame.Ui.Windows
 
         private void FillGridWithElements()
         {
-            _gameTable = new GameTable
-            {
-                GameElementFabric = new GameElementFabric(new ImageFabric())
-            };
+            _gameTable = new GameTable(new GameElementStackFabric(new GameElementFabric(new ImageFabric())));
 
             _gameTable.FillWithElements(_size, MyGrid);
         }

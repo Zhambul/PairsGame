@@ -15,7 +15,7 @@ namespace PairsGame.Bl
         {
             _imageFabric = imageFabric;
         }
-        public IGameElement GetGameElement()
+        public IGameElement Get()
         {
             var frontImage = _imageFabric.GetRandomImage();
 
