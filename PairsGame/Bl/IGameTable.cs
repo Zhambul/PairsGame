@@ -9,6 +9,7 @@ using System.Windows.Controls.Primitives;
 
 namespace PairsGame.Bl
 {
+    // интерфейс класса игры
     public interface IGameTable
     {   
         void RegisterGameElement(IGameElement gameElement, int i, int j);

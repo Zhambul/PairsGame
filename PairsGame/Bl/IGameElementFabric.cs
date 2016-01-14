@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PairsGame.Bl
 {
+    // интерфейс для создания элементов игры
     interface IGameElementFabric
     {
         IGameElement Get();

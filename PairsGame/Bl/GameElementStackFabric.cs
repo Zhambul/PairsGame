@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PairsGame.Bl
 {
+    // класс для создания стака элементов
     class GameElementStackFabric : IGameElementsStackFabric
     {
         private readonly IGameElementFabric _gameElementFabric;
@@ -17,6 +18,7 @@ namespace PairsGame.Bl
             _gameElementFabric = gameElementFabric;
         }
 
+        // главный метод
         public GameElementsStack Get()
         {
             var result = new GameElementsStack {Elements = new Stack<IGameElement>()};

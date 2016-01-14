@@ -8,6 +8,7 @@ using System.Windows.Media;
 
 namespace PairsGame.Bl
 {
+    // класс для создания элемента игры
     public class GameElementFabric : IGameElementFabric
     {
         private readonly IImageFabric _imageFabric;
@@ -15,6 +16,8 @@ namespace PairsGame.Bl
         {
             _imageFabric = imageFabric;
         }
+
+        // главный метод создания элемента
         public IGameElement Get()
         {
             var frontImage = _imageFabric.GetRandomImage();

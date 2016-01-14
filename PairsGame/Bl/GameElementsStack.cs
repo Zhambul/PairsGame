@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PairsGame.Bl
 {
+    // класс для стэка элементов
     class GameElementsStack
     {
         public Stack<IGameElement> Elements { get; set; } 
-
     }
 }

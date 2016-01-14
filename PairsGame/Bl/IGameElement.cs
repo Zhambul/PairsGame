@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace PairsGame.Bl
 {
+    // интерфейс для элемента игры
     public interface IGameElement
     {
         void Update();

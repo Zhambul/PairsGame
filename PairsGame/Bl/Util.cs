@@ -14,6 +14,7 @@ namespace PairsGame.Bl
 {
     public class Util
     {
+        // конвертирование Bitmap в ImageBrush. ImageBrush нужен для нормального отображение на кнопке
         public static ImageBrush Convert(Bitmap bitmap)
         {
             return new ImageBrush
