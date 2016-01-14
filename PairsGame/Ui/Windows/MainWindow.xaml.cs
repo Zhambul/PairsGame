@@ -13,27 +13,16 @@ namespace PairsGame.Ui.Windows
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow, INotifyPropertyChanged
+    public partial class MainWindow : MetroWindow
     {
         private readonly int _size;
+        // объект игры
         private IGameTable _gameTable;
 
-        private ObservableCollection<IGameElement> _gameElements;
-        public ObservableCollection<IGameElement> GameElements
-        {
-            get { return _gameElements; }
-
-            set
-            {
-                _gameElements = value;
-                OnPropertyChanged();
-            }
-        }
+        // конструктор принимает сложность игры
         public MainWindow(int size)
         {
             _size = size;
-            DataContext = this;
-            GameElements = new ObservableCollection<IGameElement>();
             InitializeComponent();
 
             FillGridWithElements();
@@ -41,18 +30,11 @@ namespace PairsGame.Ui.Windows
 
         private void FillGridWithElements()
         {
-            _gameTable = new GameTable(new GameElementStackFabric(new GameElementFabric(new ImageFabric())));
-
+            // инициализируем игру
+            _gameTable = new GameTable(new GameElementStackFabric(new GameElementFabric(new ImageFabric(_size * _size))));
+            
+            // заполняем элементами доску
             _gameTable.FillWithElements(_size, MyGrid);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

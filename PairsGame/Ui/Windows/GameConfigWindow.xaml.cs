@@ -21,33 +21,32 @@ namespace PairsGame.Ui.Windows
     /// </summary>
     public partial class GameConfigWindow : MetroWindow
     {
-
+        // Коллекция возможных размеров игры
+        // ObservableCollection - коллекция для динамической связки кода к ui
         public ObservableCollection<String> Sizes { get; set; }
 
         private int _tableSize = 2;
-        private int _mode = 0;
         public GameConfigWindow()
         {
             InitializeComponent();
-            Sizes = new ObservableCollection<String> {"2", "4", "6", "8" };
+            // заполняем все возможные сложности
+            Sizes = new ObservableCollection<String> {"2", "4", "6" };
             DataContext = this;
         }
 
+        // метод вызывающийся при собитии изменения выбора сложности
         private void DropDownButton_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int selectedIndex = ((SplitButton)sender).SelectedIndex;
+            // _tableSize - выбранная сложность
             _tableSize = Convert.ToInt32(Sizes[selectedIndex]);
         }
 
+        // при клике "старт игры"
         private void StartGameButton_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow(_tableSize).Show();
             Close();
-        }
-
-        private void GameModeSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            _mode = ((SplitButton)sender).SelectedIndex;
         }
     }
 }

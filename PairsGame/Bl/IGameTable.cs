@@ -10,8 +10,7 @@ using System.Windows.Controls.Primitives;
 namespace PairsGame.Bl
 {
     public interface IGameTable
-    {
-//        ObservableCollection<IGameElement> GameElements { get; set; }
+    {   
         void RegisterGameElement(IGameElement gameElement, int i, int j);
         void RemoveGameElement(IGameElement gameElement);
         void NotifyGameElements();

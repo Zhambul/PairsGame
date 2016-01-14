@@ -21,7 +21,6 @@ namespace PairsGame.Bl
         {
             var result = new GameElementsStack {Elements = new Stack<IGameElement>()};
 
-
             for (var i = 0; i < NumberOfLayers; i++)
             {
                 result.Elements.Push(_gameElementFabric.Get());

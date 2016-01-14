@@ -7,6 +7,7 @@ using System.Windows.Media;
 
 namespace PairsGame.Bl
 {
+    // класс для внешнего вида Элемента игры. id нужен для идентификации каждого элемента
     public class ButtonBackground
     {
         public ImageBrush Image { get; set; }

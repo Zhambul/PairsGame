@@ -86,6 +86,11 @@
     <Compile Include="Bl\IGameTable.cs" />
     <Compile Include="Bl\Util.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Windows\GameConfigWindow.xaml.cs">
       <DependentUpon>GameConfigWindow.xaml</DependentUpon>
     </Compile>
@@ -98,11 +103,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -110,8 +110,8 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -127,28 +127,145 @@
     <None Include="Images\white.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\1.jpg" />
+    <None Include="Images\t00.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\2.jpg" />
+    <None Include="Images\t01.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\3.jpg" />
+    <None Include="Images\t02.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\4.jpg" />
+    <None Include="Images\t03.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\5.jpg" />
+    <None Include="Images\t04.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\6.jpg" />
+    <None Include="Images\t05.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\7.jpg" />
+    <None Include="Images\t06.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\8.jpg" />
+    <None Include="Images\t07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t27.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t28.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t33.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t34.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t37.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t39.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t41.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t43.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t44.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\t46.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
